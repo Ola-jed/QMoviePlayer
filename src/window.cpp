@@ -32,7 +32,7 @@ void Window::makeConnections()
     makeButtonConnections();
     connect(player,&QMediaPlayer::volumeChanged,this,&Window::onUpdateVolumeLabel);
     connect(ui->volumeSlider,&QSlider::valueChanged,this,&Window::setVolume);
-    connect(ui->durationSlider,&QSlider::valueChanged,this,&Window::updateSlider);
+    connect(ui->durationSlider,&QSlider::sliderMoved,this,&Window::updateSlider);
     connect(playlist,&QMediaPlaylist::loadFailed,this,&Window::onLoadFailed);
     connect(player,&QMediaPlayer::durationChanged,this,&Window::onUpdateTotalDuration);
     connect(player,&QMediaPlayer::positionChanged,this,&Window::onUpdateDurationLabel);
