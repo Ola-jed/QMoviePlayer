@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/camera.ico</file>
+        <file>assets/close.ico</file>
+        <file>assets/qt.ico</file>
+        <file>assets/fast_forward.ico</file>
+        <file>assets/file.ico</file>
+        <file>assets/first.ico</file>
+        <file>assets/folder.ico</file>
+        <file>assets/icon.ico</file>
+        <file>assets/info.ico</file>
+        <file>assets/last.ico</file>
+        <file>assets/next.ico</file>
+        <file>assets/pause.ico</file>
+        <file>assets/play.ico</file>
+        <file>assets/play_pause.ico</file>
+        <file>assets/stop.ico</file>
+        <file>assets/settings.ico</file>
+        <file>assets/repeat.ico</file>
+        <file>assets/rewind.ico</file>
+        <file>assets/reload.ico</file>
+        <file>assets/random.ico</file>
+        <file>assets/previous.ico</file>
+        <file>assets/volume_up.ico</file>
+        <file>assets/volume_down.ico</file>
+        <file>assets/volume_off.ico</file>
+        <file>assets/fullscreen.ico</file>
+        <file>assets/fullscreen_exit.ico</file>
+        <file>assets/about.ico</file>
+        <file>assets/contrast.ico</file>
+        <file>assets/brightness.ico</file>
+        <file>assets/hue.ico</file>
+        <file>assets/saturation.ico</file>
+    </qresource>
+</RCC>
