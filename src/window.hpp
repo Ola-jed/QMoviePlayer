@@ -44,8 +44,8 @@ class Window : public QMainWindow
         void dropEvent(QDropEvent *event) override;
 
     private:
+        const QSet<QString> SUPPORTED_FORMATS {"mov","mp4","mpg","m4v","3gp","avi","3g2"}; // Supported extensions
         Ui::Window *ui;
-        const QSet<QString> SUPPORTED_FORMATS {"mov","mp4","mpg","m4v","3gp","avi","3g2"};
         QMediaPlayer *player;
         QMediaPlaylist *playlist;
         bool onPlaying{true};

@@ -9,5 +9,4 @@ class VideoWidget : public QVideoWidget
         explicit VideoWidget(QWidget *parent);
 };
 
-
 #endif //QMOVIEPLAYER_VIDEOWIDGET_HPP

@@ -73,6 +73,7 @@ void Window::makeButtonConnections()
     connect(ui->repeat,&QPushButton::clicked,this,&Window::onLoop);
 }
 
+// Opening a file and play the media
 void Window::onOpenFile()
 {
     auto const fileToOpen{QFileDialog::getOpenFileName(this,"Open a file","",
@@ -85,6 +86,7 @@ void Window::onOpenFile()
     playMedia(fileToOpen);
 }
 
+// Opening a folder to load a new playlist
 void Window::onOpenFolder()
 {
     auto const dirToOpen{QFileDialog::getExistingDirectory(this,"Open a folder")};
@@ -106,11 +108,13 @@ void Window::onOpenFolder()
     playPlaylist(mediaInDir);
 }
 
+// Closing the app
 void Window::onQuit()
 {
     qApp->quit();
 }
 
+// Play/Pause management
 void Window::onPlay()
 {
     onPlaying = true;
@@ -123,6 +127,7 @@ void Window::onPause()
     player->pause();
 }
 
+// Check if we should play or pause (for the button play/pause)
 void Window::onPlayOrPause()
 {
     if(onPlaying)
@@ -135,11 +140,13 @@ void Window::onPlayOrPause()
     }
 }
 
+// Stop the media playing
 void Window::onStop()
 {
     player->stop();
 }
 
+// Play the previous media if available
 void Window::onPrevious()
 {
     if(playlist->currentIndex() - 1 >= 0)
@@ -148,6 +155,7 @@ void Window::onPrevious()
     }
 }
 
+// Play the next media if available
 void Window::onNext()
 {
     if(playlist->currentIndex() < playlist->mediaCount() - 1)
@@ -156,48 +164,58 @@ void Window::onNext()
     }
 }
 
+// Rewind the current media
 void Window::onRewind()
 {
-    if(player->position() - 10 > 0)
+    auto const newPos = ui->durationSlider->sliderPosition() - player->duration() / 100;
+    if(newPos > 0)
     {
-        onUpdatePositionSlider(player->position() - 10);
+        ui->durationSlider->setSliderPosition(newPos);
     }
 }
 
+// Fast-forward on the current media
 void Window::onFastForward()
 {
-    if(player->position() + 10 < player->duration())
+    auto const newPos = ui->durationSlider->sliderPosition() + player->duration() / 100;
+    if(newPos < player->duration())
     {
-        onUpdatePositionSlider(player->position() + 10);
+        ui->durationSlider->setSliderPosition(newPos);
     }
 }
 
+// Go to the first media of the current playlist
 void Window::onFirst()
 {
     playlist->setCurrentIndex(0);
 }
 
+// Go to the last media of the current playlist
 void Window::onLast()
 {
     playlist->setCurrentIndex(playlist->mediaCount() - 1);
 }
 
+// Choose and play a random media in the playlist
 void Window::onRandom()
 {
     playlist->shuffle();
     onNext();
 }
 
+// Restart the current media playing
 void Window::onReplay()
 {
     playlist->setCurrentIndex(playlist->currentIndex());
 }
 
+// Loop on the current media
 void Window::onLoop()
 {
     playlist->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
 }
 
+// Increase volume
 void Window::onVolumeUp()
 {
     auto const currentVolume{player->volume()};
@@ -208,6 +226,7 @@ void Window::onVolumeUp()
     setVolume(currentVolume + 5);
 }
 
+// Decrease volume
 void Window::onVolumeDown()
 {
     auto const currentVolume{player->volume()};
@@ -218,11 +237,13 @@ void Window::onVolumeDown()
     setVolume(currentVolume - 5);
 }
 
+// Mute
 void Window::onVolumeMute()
 {
     player->setMuted(ui->mute->isChecked());
 }
 
+// Set a value for the volume
 void Window::setVolume(int volumeToSet)
 {
     if((volumeToSet < 0) || (volumeToSet > 100))
@@ -238,6 +259,7 @@ void Window::onUpdateVolumeLabel(int volume)
     ui->volumeIndication->setText(QString("%1 %").arg(volume));
 }
 
+// Play fullscreen
 void Window::onFullscreen()
 {
     if(ui->fullscreen->isChecked())
@@ -250,6 +272,7 @@ void Window::onFullscreen()
     }
 }
 
+// Take a screenshot of the application window
 void Window::onScreenshot()
 {
     onPause();
@@ -277,12 +300,14 @@ void Window::onScreenshot()
     onPlay();
 }
 
+// Show a dialog about QMoviePlayer
 void Window::onAbout()
 {
     auto aboutDialog = new AboutDialog(this);
     aboutDialog->show();
 }
 
+// Play a media with the path
 void Window::playMedia(const QString &mediaPath)
 {
     playlist->addMedia(QUrl::fromLocalFile(mediaPath));
@@ -290,6 +315,7 @@ void Window::playMedia(const QString &mediaPath)
     player->play();
 }
 
+// Play a playlist with all the media
 void Window::playPlaylist(const QList<QMediaContent> &contentToPlay)
 {
     playlist->addMedia(contentToPlay);
@@ -297,17 +323,20 @@ void Window::playPlaylist(const QList<QMediaContent> &contentToPlay)
     player->play();
 }
 
+// Is a media supported ?
 bool Window::mediaIsSupported(const QString &mediaPath) const
 {
     auto const ext{QFileInfo{mediaPath}.suffix()};
     return SUPPORTED_FORMATS.contains(ext);
 }
 
+// If the load of a media failed
 void Window::onLoadFailed()
 {
     QMessageBox::warning(this,"Loading","Loading failed : "+playlist->errorString());
 }
 
+// Update info about the media's total duration
 void Window::onUpdateTotalDuration(qint64 duration)
 {
     const auto h = duration / 3600000;
@@ -322,6 +351,7 @@ void Window::onUpdateTotalDuration(qint64 duration)
     onUpdatePositionSlider(duration);
 }
 
+// Update the duration label when the position changes
 void Window::onUpdateDurationLabel(qint64 duration)
 {
     onUpdatePositionSlider(duration);
@@ -346,6 +376,7 @@ void Window::updateSlider(int positionToSet)
     player->setPosition(positionToSet);
 }
 
+// Drag and drop to open a media
 void Window::dragEnterEvent(QDragEnterEvent *event)
 {
     if (event->mimeData()->hasUrls())
@@ -364,6 +395,7 @@ void Window::dropEvent(QDropEvent *event)
     }
 }
 
+// Open the settings dialog (brightness,hue,saturation,contrast)
 void Window::onSettings()
 {
     auto settings = new Settings(this,ui->videoWidget->brightness(),
@@ -383,6 +415,7 @@ void Window::onSettings()
     settings->show();
 }
 
+// Show a dialog containing info about the current media
 void Window::onInfo()
 {
     auto infoWindow = new Info(this,player);
