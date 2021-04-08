@@ -77,7 +77,7 @@ void Window::makeButtonConnections()
 void Window::onOpenFile()
 {
     auto const fileToOpen{QFileDialog::getOpenFileName(this,"Open a file","",
-                                                       tr("Videos (*.mov *.mp4 *.mpg *.m4v *.3gp *.avi *.3g2)"))};
+                               tr("Videos (*.mov *.mp4 *.mpg *.m4v *.3gp *.avi *.3g2)"))};
     if(fileToOpen.isEmpty())
     {
         QMessageBox::warning(this,"Open","Invalid file name");
@@ -170,7 +170,8 @@ void Window::onRewind()
     auto const newPos = ui->durationSlider->sliderPosition() - player->duration() / 100;
     if(newPos > 0)
     {
-        ui->durationSlider->setSliderPosition(newPos);
+        player->setPosition(newPos);
+        ui->durationSlider->setValue(newPos);
     }
 }
 
@@ -180,7 +181,8 @@ void Window::onFastForward()
     auto const newPos = ui->durationSlider->sliderPosition() + player->duration() / 100;
     if(newPos < player->duration())
     {
-        ui->durationSlider->setSliderPosition(newPos);
+        player->setPosition(newPos);
+        ui->durationSlider->setValue(newPos);
     }
 }
 
@@ -219,22 +221,20 @@ void Window::onLoop()
 void Window::onVolumeUp()
 {
     auto const currentVolume{player->volume()};
-    if(currentVolume + 5 > 100)
+    if(currentVolume + 5 <= 100)
     {
-        return;
+        setVolume(currentVolume + 5);
     }
-    setVolume(currentVolume + 5);
 }
 
 // Decrease volume
 void Window::onVolumeDown()
 {
     auto const currentVolume{player->volume()};
-    if(currentVolume - 5 > 100)
+    if(currentVolume - 5 >= 0)
     {
-        return;
+        setVolume(currentVolume - 5);
     }
-    setVolume(currentVolume - 5);
 }
 
 // Mute
@@ -418,6 +418,6 @@ void Window::onSettings()
 // Show a dialog containing info about the current media
 void Window::onInfo()
 {
-    auto infoWindow = new Info(this,player);
+    auto const infoWindow = new Info(this,player);
     infoWindow->show();
 }
