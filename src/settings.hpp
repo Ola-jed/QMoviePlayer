@@ -28,7 +28,6 @@ class Settings : public QDialog
         void hueChanged(int);
         void contrastChanged(int);
         void saturationChanged(int);
-
 };
 
 #endif //QMOVIEPLAYER_SETTINGS_HPP
