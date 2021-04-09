@@ -8,14 +8,9 @@ Info::Info(QWidget *parent,QMediaPlayer *player) :
 {
     ui->setupUi(this);
     const QStringList metadataList = player->availableMetaData();
-    const int listSize = metadataList.size();
-    QString metadataKey;
-    QVariant varData;
-    for (int i = 0; i < listSize; i++)
+    foreach(auto const &tempMetaDataKey,metadataList)
     {
-        metadataKey = metadataList.at(i);
-        varData = player->metaData(metadataKey);
-        ui->lbl->setText(ui->lbl->text().append(metadataKey + "    :    " + varData.toString()) + "\n");
+        ui->lbl->setText(ui->lbl->text().append(tempMetaDataKey + "    :    " + player->metaData(tempMetaDataKey).toString()) + "\n");
     }
 }
 
