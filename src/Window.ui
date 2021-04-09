@@ -539,6 +539,9 @@
    <property name="text">
     <string>Increase sound</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Up</string>
+   </property>
   </action>
   <action name="decreaseSound">
    <property name="icon">
@@ -546,7 +549,10 @@
      <normaloff>:/assets/volume_down.ico</normaloff>:/assets/volume_down.ico</iconset>
    </property>
    <property name="text">
-    <string>Decrese sound</string>
+    <string>Decrease sound</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Down</string>
    </property>
   </action>
   <action name="mute">
@@ -560,6 +566,9 @@
    <property name="text">
     <string>Mute</string>
    </property>
+   <property name="shortcut">
+    <string>M</string>
+   </property>
   </action>
   <action name="fullscreen">
    <property name="checkable">
@@ -571,6 +580,9 @@
    </property>
    <property name="text">
     <string>Fullscreen</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
   <action name="exitFullscreen">
@@ -626,6 +638,9 @@
    <property name="text">
     <string>Stop</string>
    </property>
+   <property name="shortcut">
+    <string>S</string>
+   </property>
   </action>
   <action name="previousAction">
    <property name="icon">
@@ -635,6 +650,9 @@
    <property name="text">
     <string>Previous</string>
    </property>
+   <property name="shortcut">
+    <string>P</string>
+   </property>
   </action>
   <action name="nextAction">
    <property name="icon">
@@ -643,6 +661,9 @@
    </property>
    <property name="text">
     <string>Next</string>
+   </property>
+   <property name="shortcut">
+    <string>N</string>
    </property>
   </action>
   <action name="aboutQt">
@@ -662,6 +683,9 @@
    <property name="text">
     <string>Settings</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="mediaInfos">
    <property name="icon">
@@ -670,6 +694,9 @@
    </property>
    <property name="text">
     <string>Media Informations</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
    </property>
   </action>
  </widget>
