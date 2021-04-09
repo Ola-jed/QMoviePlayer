@@ -16,7 +16,7 @@ class Info : public QDialog
     Q_OBJECT
 
     public:
-        explicit Info(QWidget *parent = nullptr,QMediaPlayer* player = nullptr);
+        explicit Info(QWidget *parent = nullptr,QMediaPlayer *player = nullptr);
         ~Info() override;
 
     private:

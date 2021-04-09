@@ -259,7 +259,7 @@ void Window::onUpdateVolumeLabel(int volume)
     ui->volumeIndication->setText(QString("%1 %").arg(volume));
 }
 
-// Play fullscreen
+// Play full screen
 void Window::onFullscreen()
 {
     if(ui->fullscreen->isChecked())
@@ -391,7 +391,7 @@ void Window::dropEvent(QDropEvent *event)
     if (mimeData->hasUrls())
     {
         const auto urlList {mimeData->urls()};
-        playMedia(urlList[0].toString().right(urlList[0].toString().length() - 7));
+        playMedia(urlList[0].toLocalFile());
     }
 }
 
