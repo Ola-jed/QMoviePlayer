@@ -31,6 +31,7 @@ QT_END_NAMESPACE
 class Window : public QMainWindow
 {
     Q_OBJECT
+
     public:
         explicit Window(QMainWindow *parent = nullptr);
         ~Window() override;

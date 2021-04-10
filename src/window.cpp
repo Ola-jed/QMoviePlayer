@@ -246,12 +246,11 @@ void Window::onVolumeMute()
 // Set a value for the volume
 void Window::setVolume(int volumeToSet)
 {
-    if((volumeToSet < 0) || (volumeToSet > 100))
+    if((volumeToSet >= 0) && (volumeToSet <= 100))
     {
-        return;
+        player->setVolume(volumeToSet);
+        ui->volumeSlider->setValue(volumeToSet);
     }
-    player->setVolume(volumeToSet);
-    ui->volumeSlider->setValue(volumeToSet);
 }
 
 void Window::onUpdateVolumeLabel(int volume)
