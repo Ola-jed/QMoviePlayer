@@ -16,5 +16,8 @@ Just import the project if you use an ide.
 
 ## Screenshots
     No media playing
+    ![black screen](https://user-images.githubusercontent.com/66482155/114758002-660eed00-9d54-11eb-90a5-4abd5b673535.png)
+
 
     Media Playing
+    ![2](https://user-images.githubusercontent.com/66482155/114758059-74f59f80-9d54-11eb-8ee0-9091c6aa646b.png)
