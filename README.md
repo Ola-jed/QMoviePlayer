@@ -15,3 +15,6 @@ cmake-build-debug/QMoviePlayer # You can pass all the media you want to play
 Just import the project if you use an ide.
 
 ## Screenshots
+    No media playing
+
+    Media Playing

@@ -1,25 +1,25 @@
 #ifndef QMOVIEPLAYER_WINDOW_HPP
 #define QMOVIEPLAYER_WINDOW_HPP
 
-#include "aboutdialog.hpp"
-#include "settings.hpp"
 #include "info.hpp"
-#include <QMainWindow>
-#include <QApplication>
-#include <QMimeData>
-#include <QDirIterator>
-#include <QFileInfo>
-#include <QScreen>
-#include <QString>
-#include <QCloseEvent>
-#include <QGuiApplication>
-#include <QMediaPlayer>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QStyle>
-#include <QMediaPlaylist>
+#include "settings.hpp"
+#include "aboutdialog.hpp"
 #include <QSet>
 #include <QList>
+#include <QStyle>
+#include <QScreen>
+#include <QString>
+#include <QFileInfo>
+#include <QMimeData>
+#include <QMainWindow>
+#include <QFileDialog>
+#include <QCloseEvent>
+#include <QApplication>
+#include <QDirIterator>
+#include <QMediaPlayer>
+#include <QMessageBox>
+#include <QMediaPlaylist>
+#include <QGuiApplication>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
