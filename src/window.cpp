@@ -167,7 +167,7 @@ void Window::onNext()
 // Rewind the current media
 void Window::onRewind()
 {
-    auto const newPos = ui->durationSlider->sliderPosition() - player->duration() / 100;
+    auto const newPos{ui->durationSlider->sliderPosition() - player->duration() / 100};
     if(newPos > 0)
     {
         player->setPosition(newPos);
@@ -178,7 +178,7 @@ void Window::onRewind()
 // Fast-forward on the current media
 void Window::onFastForward()
 {
-    auto const newPos = ui->durationSlider->sliderPosition() + player->duration() / 100;
+    auto const newPos{ui->durationSlider->sliderPosition() + player->duration() / 100};
     if(newPos < player->duration())
     {
         player->setPosition(newPos);
@@ -280,7 +280,7 @@ void Window::onScreenshot()
     {
         return;
     }
-    auto const screenName = QFileDialog::getSaveFileName(this,"Screenshot","screenshot.png");
+    auto const screenName{QFileDialog::getSaveFileName(this, "Screenshot", "screenshot.png")};
     if(screenName.isEmpty())
     {
         QMessageBox::warning(this,"Save screenshot","Invalid filename");
@@ -354,11 +354,11 @@ void Window::onUpdateTotalDuration(qint64 duration)
 void Window::onUpdateDurationLabel(qint64 duration)
 {
     onUpdatePositionSlider(duration);
-    const auto h = duration / 3600000;
+    const auto h{duration / 3600000};
     duration -= h * 3600000;
-    const auto m = duration / 60000;
+    const auto m{duration / 60000};
     duration -= m * 60000;
-    const auto s = duration / 1000;
+    const auto s{duration / 1000};
     const QString currentDuration{QStringLiteral("%1").arg(h,2,10,QLatin1Char('0')) + ":" +
                     QStringLiteral("%1").arg(m,2,10, QLatin1Char('0')) + ":" +
                     QStringLiteral("%1").arg(s,2,10, QLatin1Char('0'))};
@@ -386,7 +386,7 @@ void Window::dragEnterEvent(QDragEnterEvent *event)
 
 void Window::dropEvent(QDropEvent *event)
 {
-    const auto mimeData = event->mimeData();
+    const auto mimeData{event->mimeData()};
     if (mimeData->hasUrls())
     {
         const auto urlList {mimeData->urls()};

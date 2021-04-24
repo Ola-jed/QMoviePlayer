@@ -4,8 +4,8 @@
 #include "ui_Settings.h"
 
 Settings::Settings(QWidget *parent,int brightness,
-                    int hue,int saturation,int contrast) :
-        QDialog(parent), ui(new Ui::Settings)
+                int hue,int saturation,int contrast)
+                :QDialog(parent), ui(new Ui::Settings)
 {
     ui->setupUi(this);
     ui->brightnessSlider->setValue(brightness);
