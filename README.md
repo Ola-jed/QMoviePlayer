@@ -1,4 +1,4 @@
-# QImageViewer
+# QMoviePlayer
 
 Lightweight movie player written in c++ with the qt framework
 

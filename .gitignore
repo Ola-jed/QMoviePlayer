@@ -1,5 +1,10 @@
+# Editors folders
 .vscode/
+.idea/
+
+# Build folders
 cmake-build-debug/
 cmake-build-release/
-.idea/
+
+# Qt creator file
 CMakeLists.txt.user*
