@@ -384,6 +384,7 @@ void Window::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
+// On drop, we try to play the given media
 void Window::dropEvent(QDropEvent *event)
 {
     const auto mimeData{event->mimeData()};
