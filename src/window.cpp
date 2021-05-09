@@ -253,6 +253,7 @@ void Window::setVolume(int volumeToSet)
     }
 }
 
+// Set the correct value for the volume label
 void Window::onUpdateVolumeLabel(int volume)
 {
     ui->volumeIndication->setText(QString("%1 %").arg(volume));
@@ -276,7 +277,7 @@ void Window::onScreenshot()
 {
     onPause();
     auto screen = QGuiApplication::primaryScreen();
-    if(screen == nullptr)
+    if(screen == nullptr) // Avoiding weird behaviours
     {
         return;
     }
@@ -365,6 +366,7 @@ void Window::onUpdateDurationLabel(qint64 duration)
     ui->durationLabel->setText(currentDuration+" / "+durationAsStr);
 }
 
+// Update the duration slider value
 void Window::onUpdatePositionSlider(qint64 duration)
 {
     ui->durationSlider->setValue(duration);
