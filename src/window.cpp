@@ -42,7 +42,7 @@ void Window::makeMenuConnections()
 {
     connect(ui->openFile,&QAction::triggered,this,&Window::onOpenFile);
     connect(ui->openFolder,&QAction::triggered,this,&Window::onOpenFolder);
-    connect(ui->quit,&QAction::triggered,this,&Window::onQuit);
+    connect(ui->quit,&QAction::triggered,this,&QCoreApplication::quit,Qt::QueuedConnection);
     connect(ui->playAction,&QAction::triggered,this,&Window::onPlay);
     connect(ui->pauseAction,&QAction::triggered,this,&Window::onPause);
     connect(ui->previousAction,&QAction::triggered,this,&Window::onPrevious);
@@ -108,12 +108,6 @@ void Window::onOpenFolder()
     playPlaylist(mediaInDir);
 }
 
-// Closing the app
-void Window::onQuit()
-{
-    qApp->quit();
-}
-
 // Play/Pause management
 void Window::onPlay()
 {
@@ -171,7 +165,7 @@ void Window::onRewind()
     if(newPos > 0)
     {
         player->setPosition(newPos);
-        ui->durationSlider->setValue(newPos);
+        ui->durationSlider->setValue(static_cast<int>(newPos));
     }
 }
 
@@ -182,7 +176,7 @@ void Window::onFastForward()
     if(newPos < player->duration())
     {
         player->setPosition(newPos);
-        ui->durationSlider->setValue(newPos);
+        ui->durationSlider->setValue(static_cast<int>(newPos));
     }
 }
 
@@ -347,7 +341,7 @@ void Window::onUpdateTotalDuration(qint64 duration)
     durationAsStr = QStringLiteral("%1").arg(h,2,10,QLatin1Char('0')) + ":" +
                     QStringLiteral("%1").arg(m,2,10, QLatin1Char('0')) + ":" +
                     QStringLiteral("%1").arg(s,2,10, QLatin1Char('0'));
-    ui->durationSlider->setMaximum(player->duration());
+    ui->durationSlider->setMaximum(static_cast<int>(player->duration()));
     onUpdatePositionSlider(duration);
 }
 
@@ -369,7 +363,7 @@ void Window::onUpdateDurationLabel(qint64 duration)
 // Update the duration slider value
 void Window::onUpdatePositionSlider(qint64 duration)
 {
-    ui->durationSlider->setValue(duration);
+    ui->durationSlider->setValue(static_cast<int>(duration));
 }
 
 void Window::updateSlider(int positionToSet)

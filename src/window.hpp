@@ -61,7 +61,6 @@ class Window : public QMainWindow
     private slots:
         void onOpenFile();
         void onOpenFolder();
-        void onQuit();
         void onPlay();
         void onPause();
         void onPlayOrPause();
