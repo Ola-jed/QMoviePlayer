@@ -1,4 +1,3 @@
-// You may need to build the project (run Qt uic code generator) to get "ui_Info.h" resolved
 #include "info.hpp"
 #include "ui_Info.h"
 
@@ -7,9 +6,11 @@ Info::Info(QWidget *parent,QMediaPlayer *player) :
 {
     ui->setupUi(this);
     const auto metadataList{player->availableMetaData()};
-    foreach(auto const &tempMetaDataKey,metadataList)
+    for(auto const &tempMetaDataKey: metadataList)
     {
-        ui->lbl->setText(ui->lbl->text().append(tempMetaDataKey + "    :    " + player->metaData(tempMetaDataKey).toString()) + "\n");
+        ui->lbl->setText(
+            ui->lbl->text().append(tempMetaDataKey + "    :    " + player->metaData(tempMetaDataKey).toString()) + "\n"
+        );
     }
 }
 
