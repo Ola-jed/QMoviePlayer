@@ -1,6 +1,6 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_Window.h" resolved
 #include "window.hpp"
-#include "ui_Window.h"
+#include "../include/ui_Window.h"
 
 Window::Window(QMainWindow *parent) :
         QMainWindow(parent), ui(new Ui::Window)

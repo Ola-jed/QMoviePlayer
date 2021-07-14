@@ -15,7 +15,7 @@ endif()
 
 set(REQUIRED_LIBS Core Gui Widgets Multimedia MultimediaWidgets)
 set(REQUIRED_LIBS_QUALIFIED Qt${QT_VERSION}::Core Qt${QT_VERSION}::Gui Qt${QT_VERSION}::Widgets Qt${QT_VERSION}::Multimedia Qt${QT_VERSION}::MultimediaWidgets)
-add_executable(${PROJECT_NAME} src/main.cpp resources.qrc src/videowidget.cpp src/videowidget.hpp src/window.cpp src/window.hpp src/Window.ui src/aboutdialog.cpp src/aboutdialog.hpp src/AboutDialog.ui src/settings.cpp src/settings.hpp src/Settings.ui src/info.cpp src/info.hpp src/Info.ui)
+add_executable(${PROJECT_NAME} src/main.cpp resources.qrc src/videowidget.cpp include/videowidget.hpp src/window.cpp include/window.hpp include/Window.ui src/aboutdialog.cpp include/aboutdialog.hpp include/AboutDialog.ui src/settings.cpp include/settings.hpp include/Settings.ui src/info.cpp include/info.hpp include/Info.ui)
 
 if (NOT CMAKE_PREFIX_PATH)
     message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
@@ -34,5 +34,6 @@ if ( MSVC )
     set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} /W4")
 endif()
 
+include_directories(${QMoviePlayer_SOURCE_DIR}/include)
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})

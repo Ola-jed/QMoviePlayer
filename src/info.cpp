@@ -1,5 +1,5 @@
 #include "info.hpp"
-#include "ui_Info.h"
+#include "../include/ui_Info.h"
 
 Info::Info(QWidget *parent,QMediaPlayer *player) :
         QDialog(parent), ui(new Ui::Info)

@@ -1,7 +1,7 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_Settings.h" resolved
 
 #include "settings.hpp"
-#include "ui_Settings.h"
+#include "../include/ui_Settings.h"
 
 Settings::Settings(QWidget *parent,int brightness,
                 int hue,int saturation,int contrast)
