@@ -4,11 +4,10 @@
 #include "info.hpp"
 #include "settings.hpp"
 #include "aboutdialog.hpp"
+#include "recentfilesmanager.hpp"
 #include <QSet>
-#include <QList>
 #include <QStyle>
 #include <QScreen>
-#include <QString>
 #include <QFileInfo>
 #include <QMimeData>
 #include <QMainWindow>
@@ -45,7 +44,8 @@ class Window : public QMainWindow
         void dropEvent(QDropEvent *event) override;
 
     private:
-        const QSet<QString> SUPPORTED_FORMATS {"mov","mp4","mpg","m4v","3gp","avi","3g2"}; // Supported extensions
+        RecentFilesManager recentFilesManager;
+        const QSet<QString> SUPPORTED_FORMATS {"mov","mp4","mpg","m4v","3gp","avi","3g2"};
         Ui::Window *ui;
         QMediaPlayer *player;
         QMediaPlaylist *playlist;
@@ -57,6 +57,7 @@ class Window : public QMainWindow
         void makeMenuConnections();
         void makeButtonConnections();
         void applyLayout();
+        void buildRecentlyOpenedList();
 
     private slots:
         void onOpenFile();

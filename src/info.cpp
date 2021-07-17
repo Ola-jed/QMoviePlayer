@@ -9,7 +9,8 @@ Info::Info(QWidget *parent,QMediaPlayer *player) :
     for(auto const &tempMetaDataKey: metadataList)
     {
         ui->lbl->setText(
-            ui->lbl->text().append(tempMetaDataKey + "    :    " + player->metaData(tempMetaDataKey).toString()) + "\n"
+            ui->lbl->text()
+                .append(tempMetaDataKey + "    :    " + player->metaData(tempMetaDataKey).toString()) + "\n"
         );
     }
 }

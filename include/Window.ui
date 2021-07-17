@@ -444,8 +444,20 @@
     <property name="title">
      <string>Media</string>
     </property>
+    <widget class="QMenu" name="recentlyOpened">
+     <property name="title">
+      <string>Recently opened</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/assets/recent.ico</normaloff>:/assets/recent.ico</iconset>
+     </property>
+    </widget>
     <addaction name="openFile"/>
     <addaction name="openFolder"/>
+    <addaction name="separator"/>
+    <addaction name="recentlyOpened"/>
+    <addaction name="separator"/>
     <addaction name="quit"/>
    </widget>
    <widget class="QMenu" name="menuAudio">
@@ -697,6 +709,16 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionRecent_files">
+   <property name="text">
+    <string>Recent files</string>
+   </property>
+  </action>
+  <action name="actionool">
+   <property name="text">
+    <string>ool</string>
    </property>
   </action>
  </widget>

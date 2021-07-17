@@ -15,7 +15,7 @@ endif()
 
 set(REQUIRED_LIBS Core Gui Widgets Multimedia MultimediaWidgets)
 set(REQUIRED_LIBS_QUALIFIED Qt${QT_VERSION}::Core Qt${QT_VERSION}::Gui Qt${QT_VERSION}::Widgets Qt${QT_VERSION}::Multimedia Qt${QT_VERSION}::MultimediaWidgets)
-add_executable(${PROJECT_NAME} src/main.cpp resources.qrc src/videowidget.cpp include/videowidget.hpp src/window.cpp include/window.hpp include/Window.ui src/aboutdialog.cpp include/aboutdialog.hpp include/AboutDialog.ui src/settings.cpp include/settings.hpp include/Settings.ui src/info.cpp include/info.hpp include/Info.ui)
+add_executable(${PROJECT_NAME} src/main.cpp resources.qrc src/videowidget.cpp include/videowidget.hpp src/window.cpp include/window.hpp include/Window.ui src/aboutdialog.cpp include/aboutdialog.hpp include/AboutDialog.ui src/settings.cpp include/settings.hpp include/Settings.ui src/info.cpp include/info.hpp include/Info.ui src/recentfilesmanager.cpp include/recentfilesmanager.hpp)
 
 if (NOT CMAKE_PREFIX_PATH)
     message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
