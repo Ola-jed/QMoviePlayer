@@ -12,14 +12,14 @@ QT_END_NAMESPACE
 
 class AboutDialog : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
-    public:
-        explicit AboutDialog(QWidget *parent = nullptr);
-        ~AboutDialog() override;
+public:
+    explicit AboutDialog(QWidget *parent = nullptr);
+    ~AboutDialog() override;
 
-    private:
-        Ui::AboutDialog *ui;
+private:
+    Ui::AboutDialog *ui;
 };
 
 #endif //QMOVIEPLAYER_ABOUTDIALOG_HPP

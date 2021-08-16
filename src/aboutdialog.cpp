@@ -5,7 +5,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
         QDialog(parent), ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
-    connect(ui->ok,&QPushButton::clicked,[this]{
+    connect(ui->ok, &QPushButton::clicked, [this] {
         close();
     });
 }

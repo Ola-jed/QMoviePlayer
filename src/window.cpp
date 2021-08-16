@@ -23,9 +23,9 @@ Window::~Window()
 /// Apply the window layout
 void Window::applyLayout()
 {
-    setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,
-                                    size(),QGuiApplication::primaryScreen()->availableGeometry()));
-    resize(QGuiApplication::primaryScreen()->availableSize() * 3/5);
+    setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter,
+                                    size(), QGuiApplication::primaryScreen()->availableGeometry()));
+    resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 }
 
 /// Make all the window connections
@@ -33,57 +33,57 @@ void Window::makeConnections()
 {
     makeMenuConnections();
     makeButtonConnections();
-    connect(player,&QMediaPlayer::volumeChanged,this,&Window::onUpdateVolumeLabel);
-    connect(ui->volumeSlider,&QSlider::valueChanged,this,&Window::setVolume);
-    connect(ui->durationSlider,&QSlider::sliderMoved,this,&Window::updateSlider);
-    connect(playlist,&QMediaPlaylist::loadFailed,this,&Window::onLoadFailed);
-    connect(player,&QMediaPlayer::durationChanged,this,&Window::onUpdateTotalDuration);
-    connect(player,&QMediaPlayer::positionChanged,this,&Window::onUpdateDurationLabel);
+    connect(player, &QMediaPlayer::volumeChanged, this, &Window::onUpdateVolumeLabel);
+    connect(ui->volumeSlider, &QSlider::valueChanged, this, &Window::setVolume);
+    connect(ui->durationSlider, &QSlider::sliderMoved, this, &Window::updateSlider);
+    connect(playlist, &QMediaPlaylist::loadFailed, this, &Window::onLoadFailed);
+    connect(player, &QMediaPlayer::durationChanged, this, &Window::onUpdateTotalDuration);
+    connect(player, &QMediaPlayer::positionChanged, this, &Window::onUpdateDurationLabel);
 }
 
 /// Make menu connections
 void Window::makeMenuConnections()
 {
-    connect(ui->openFile,&QAction::triggered,this,&Window::onOpenFile);
-    connect(ui->openFolder,&QAction::triggered,this,&Window::onOpenFolder);
-    connect(ui->quit,&QAction::triggered,this,&QCoreApplication::quit,Qt::QueuedConnection);
-    connect(ui->playAction,&QAction::triggered,this,&Window::onPlay);
-    connect(ui->pauseAction,&QAction::triggered,this,&Window::onPause);
-    connect(ui->previousAction,&QAction::triggered,this,&Window::onPrevious);
-    connect(ui->nextAction,&QAction::triggered,this,&Window::onNext);
-    connect(ui->increaseSound,&QAction::triggered,this,&Window::onVolumeUp);
-    connect(ui->decreaseSound,&QAction::triggered,this,&Window::onVolumeDown);
-    connect(ui->mute,&QAction::triggered,this,&Window::onVolumeMute);
-    connect(ui->fullscreen,&QAction::triggered,this,&Window::onFullscreen);
-    connect(ui->screenshot,&QAction::triggered,this,&Window::onScreenshot);
-    connect(ui->settings,&QAction::triggered,this,&Window::onSettings);
-    connect(ui->mediaInfos,&QAction::triggered,this,&Window::onInfo);
-    connect(ui->about,&QAction::triggered,this,&Window::onAbout);
-    connect(ui->aboutQt,&QAction::triggered,this,&QApplication::aboutQt);
+    connect(ui->openFile, &QAction::triggered, this, &Window::onOpenFile);
+    connect(ui->openFolder, &QAction::triggered, this, &Window::onOpenFolder);
+    connect(ui->quit, &QAction::triggered, this, &QCoreApplication::quit, Qt::QueuedConnection);
+    connect(ui->playAction, &QAction::triggered, this, &Window::onPlay);
+    connect(ui->pauseAction, &QAction::triggered, this, &Window::onPause);
+    connect(ui->previousAction, &QAction::triggered, this, &Window::onPrevious);
+    connect(ui->nextAction, &QAction::triggered, this, &Window::onNext);
+    connect(ui->increaseSound, &QAction::triggered, this, &Window::onVolumeUp);
+    connect(ui->decreaseSound, &QAction::triggered, this, &Window::onVolumeDown);
+    connect(ui->mute, &QAction::triggered, this, &Window::onVolumeMute);
+    connect(ui->fullscreen, &QAction::triggered, this, &Window::onFullscreen);
+    connect(ui->screenshot, &QAction::triggered, this, &Window::onScreenshot);
+    connect(ui->settings, &QAction::triggered, this, &Window::onSettings);
+    connect(ui->mediaInfos, &QAction::triggered, this, &Window::onInfo);
+    connect(ui->about, &QAction::triggered, this, &Window::onAbout);
+    connect(ui->aboutQt, &QAction::triggered, this, &QApplication::aboutQt);
 }
 
 /// Make the button connections
 void Window::makeButtonConnections()
 {
-    connect(ui->playPause,&QPushButton::clicked,this,&Window::onPlayOrPause);
-    connect(ui->stop,&QPushButton::clicked,this,&Window::onStop);
-    connect(ui->previous,&QPushButton::clicked,this,&Window::onPrevious);
-    connect(ui->next,&QPushButton::clicked,this,&Window::onNext);
-    connect(ui->rewind,&QPushButton::clicked,this,&Window::onRewind);
-    connect(ui->fastForward,&QPushButton::clicked,this,&Window::onFastForward);
-    connect(ui->firstMedia,&QPushButton::clicked,this,&Window::onFirst);
-    connect(ui->lastMedia,&QPushButton::clicked,this,&Window::onLast);
-    connect(ui->randomMedia,&QPushButton::clicked,this,&Window::onRandom);
-    connect(ui->reload,&QPushButton::clicked,this,&Window::onReplay);
-    connect(ui->repeat,&QPushButton::clicked,this,&Window::onLoop);
+    connect(ui->playPause, &QPushButton::clicked, this, &Window::onPlayOrPause);
+    connect(ui->stop, &QPushButton::clicked, this, &Window::onStop);
+    connect(ui->previous, &QPushButton::clicked, this, &Window::onPrevious);
+    connect(ui->next, &QPushButton::clicked, this, &Window::onNext);
+    connect(ui->rewind, &QPushButton::clicked, this, &Window::onRewind);
+    connect(ui->fastForward, &QPushButton::clicked, this, &Window::onFastForward);
+    connect(ui->firstMedia, &QPushButton::clicked, this, &Window::onFirst);
+    connect(ui->lastMedia, &QPushButton::clicked, this, &Window::onLast);
+    connect(ui->randomMedia, &QPushButton::clicked, this, &Window::onRandom);
+    connect(ui->reload, &QPushButton::clicked, this, &Window::onReplay);
+    connect(ui->repeat, &QPushButton::clicked, this, &Window::onLoop);
 }
 
 /// Opening a file and play the media
 void Window::onOpenFile()
 {
-    auto const fileToOpen{QFileDialog::getOpenFileName(this,"Open a file","",
-                               tr("Videos (*.mov *.mp4 *.mpg *.m4v *.3gp *.avi *.3g2)"))};
-    if(fileToOpen.trimmed().isEmpty())
+    auto const fileToOpen{QFileDialog::getOpenFileName(this, "Open a file", "",
+                                                       tr("Videos (*.mov *.mp4 *.mpg *.m4v *.3gp *.avi *.3g2)"))};
+    if (fileToOpen.trimmed().isEmpty())
     {
         return;
     }
@@ -93,17 +93,17 @@ void Window::onOpenFile()
 /// Opening a folder to load a new playlist
 void Window::onOpenFolder()
 {
-    auto const dirToOpen{QFileDialog::getExistingDirectory(this,"Open a folder")};
-    if(dirToOpen.trimmed().isEmpty())
+    auto const dirToOpen{QFileDialog::getExistingDirectory(this, "Open a folder")};
+    if (dirToOpen.trimmed().isEmpty())
     {
         return;
     }
     QList<QMediaContent> mediaInDir{};
-    QDirIterator mediaDirIterator{dirToOpen};
-    QString tmpMedia;
-    while(mediaDirIterator.hasNext() && QFileInfo(tmpMedia = mediaDirIterator.next()).isReadable())
+    QDirIterator         mediaDirIterator{dirToOpen};
+    QString              tmpMedia;
+    while (mediaDirIterator.hasNext() && QFileInfo(tmpMedia = mediaDirIterator.next()).isReadable())
     {
-        if(mediaIsSupported(tmpMedia))
+        if (mediaIsSupported(tmpMedia))
         {
             mediaInDir.push_back(QUrl::fromLocalFile(tmpMedia));
         }
@@ -114,9 +114,9 @@ void Window::onOpenFolder()
 /// Build the action list for recently opened files
 void Window::buildRecentlyOpenedList()
 {
-    for(auto const & aFile : recentFilesManager.recentFiles())
+    for (auto const &aFile : recentFilesManager.recentFiles())
     {
-        ui->recentlyOpened->addAction(aFile.toString(),[this,aFile](){
+        ui->recentlyOpened->addAction(aFile.toString(), [this, aFile]() {
             playMedia(aFile.toString());
         });
     }
@@ -139,7 +139,7 @@ void Window::onPause()
 /// Check if we should play or pause (for the button play/pause)
 void Window::onPlayOrPause()
 {
-    if(onPlaying)
+    if (onPlaying)
     {
         onPause();
     }
@@ -158,7 +158,7 @@ void Window::onStop()
 /// Play the previous media if available
 void Window::onPrevious()
 {
-    if(playlist->currentIndex() - 1 >= 0)
+    if (playlist->currentIndex() - 1 >= 0)
     {
         playlist->previous();
     }
@@ -167,7 +167,7 @@ void Window::onPrevious()
 /// Play the next media if available
 void Window::onNext()
 {
-    if(playlist->currentIndex() < playlist->mediaCount() - 1)
+    if (playlist->currentIndex() < playlist->mediaCount() - 1)
     {
         playlist->next();
     }
@@ -177,7 +177,7 @@ void Window::onNext()
 void Window::onRewind()
 {
     auto const newPos{ui->durationSlider->sliderPosition() - player->duration() / 100};
-    if(newPos > 0)
+    if (newPos > 0)
     {
         player->setPosition(newPos);
         ui->durationSlider->setValue(static_cast<int>(newPos));
@@ -188,7 +188,7 @@ void Window::onRewind()
 void Window::onFastForward()
 {
     auto const newPos{ui->durationSlider->sliderPosition() + player->duration() / 100};
-    if(newPos < player->duration())
+    if (newPos < player->duration())
     {
         player->setPosition(newPos);
         ui->durationSlider->setValue(static_cast<int>(newPos));
@@ -230,7 +230,7 @@ void Window::onLoop()
 void Window::onVolumeUp()
 {
     auto const currentVolume{player->volume()};
-    if(currentVolume + 5 <= 100)
+    if (currentVolume + 5 <= 100)
     {
         setVolume(currentVolume + 5);
     }
@@ -240,7 +240,7 @@ void Window::onVolumeUp()
 void Window::onVolumeDown()
 {
     auto const currentVolume{player->volume()};
-    if(currentVolume - 5 >= 0)
+    if (currentVolume - 5 >= 0)
     {
         setVolume(currentVolume - 5);
     }
@@ -256,7 +256,7 @@ void Window::onVolumeMute()
 /// \param volumeToSet
 void Window::setVolume(int volumeToSet)
 {
-    if((volumeToSet >= 0) && (volumeToSet <= 100))
+    if ((volumeToSet >= 0) && (volumeToSet <= 100))
     {
         player->setVolume(volumeToSet);
         ui->volumeSlider->setValue(volumeToSet);
@@ -273,7 +273,7 @@ void Window::onUpdateVolumeLabel(int volume)
 /// Play full screen
 void Window::onFullscreen()
 {
-    if(ui->fullscreen->isChecked())
+    if (ui->fullscreen->isChecked())
     {
         showFullScreen();
     }
@@ -288,20 +288,20 @@ void Window::onScreenshot()
 {
     onPause();
     auto screen = QGuiApplication::primaryScreen();
-    if(screen == nullptr) // Avoiding weird behaviours
+    if (screen == nullptr) // Avoiding weird behaviours
     {
         return;
     }
     auto const screenName{QFileDialog::getSaveFileName(this, "Screenshot", "screenshot.png")};
-    if(!screenName.trimmed().isEmpty())
+    if (!screenName.trimmed().isEmpty())
     {
-        if(screen->grabWindow(winId()).toImage().save(screenName))
+        if (screen->grabWindow(winId()).toImage().save(screenName))
         {
             QApplication::beep();
         }
         else
         {
-            QMessageBox::warning(this,"Screenshot","Could not take the screenshot");
+            QMessageBox::warning(this, "Screenshot", "Could not take the screenshot");
         }
     }
     onPlay();
@@ -344,7 +344,7 @@ bool Window::mediaIsSupported(const QString &mediaPath) const
 /// If the load of a media failed
 void Window::onLoadFailed()
 {
-    QMessageBox::warning(this,"Loading","Loading failed : "+playlist->errorString());
+    QMessageBox::warning(this, "Loading", "Loading failed : " + playlist->errorString());
 }
 
 /// Update info about the media's total duration
@@ -356,9 +356,9 @@ void Window::onUpdateTotalDuration(qint64 duration)
     const auto m = duration / 60000;
     duration -= m * 60000;
     const auto s = duration / 1000;
-    durationAsStr = QStringLiteral("%1").arg(h,2,10,QLatin1Char('0')) + ":" +
-                    QStringLiteral("%1").arg(m,2,10, QLatin1Char('0')) + ":" +
-                    QStringLiteral("%1").arg(s,2,10, QLatin1Char('0'));
+    durationAsStr = QStringLiteral("%1").arg(h, 2, 10, QLatin1Char('0')) + ":" +
+                    QStringLiteral("%1").arg(m, 2, 10, QLatin1Char('0')) + ":" +
+                    QStringLiteral("%1").arg(s, 2, 10, QLatin1Char('0'));
     ui->durationSlider->setMaximum(static_cast<int>(player->duration()));
     onUpdatePositionSlider(duration);
 }
@@ -372,11 +372,11 @@ void Window::onUpdateDurationLabel(qint64 duration)
     duration -= h * 3600000;
     const auto m{duration / 60000};
     duration -= m * 60000;
-    const auto s{duration / 1000};
-    const QString currentDuration{QStringLiteral("%1").arg(h,2,10,QLatin1Char('0')) + ":" +
-                    QStringLiteral("%1").arg(m,2,10, QLatin1Char('0')) + ":" +
-                    QStringLiteral("%1").arg(s,2,10, QLatin1Char('0'))};
-    ui->durationLabel->setText(currentDuration+" / "+durationAsStr);
+    const auto    s{duration / 1000};
+    const QString currentDuration{QStringLiteral("%1").arg(h, 2, 10, QLatin1Char('0')) + ":" +
+                                  QStringLiteral("%1").arg(m, 2, 10, QLatin1Char('0')) + ":" +
+                                  QStringLiteral("%1").arg(s, 2, 10, QLatin1Char('0'))};
+    ui->durationLabel->setText(currentDuration + " / " + durationAsStr);
 }
 
 /// Update the duration slider value
@@ -409,7 +409,7 @@ void Window::dropEvent(QDropEvent *event)
     const auto mimeData{event->mimeData()};
     if (mimeData->hasUrls())
     {
-        const auto urlList {mimeData->urls()};
+        const auto urlList{mimeData->urls()};
         playMedia(urlList[0].toLocalFile());
     }
 }
@@ -417,18 +417,19 @@ void Window::dropEvent(QDropEvent *event)
 /// Open the settings dialog (brightness,hue,saturation,contrast)
 void Window::onSettings()
 {
-    auto settings = new Settings(this,ui->videoWidget->brightness(),
-                ui->videoWidget->hue(),ui->videoWidget->saturation(),ui->videoWidget->contrast());
-    connect(settings,&Settings::brightnessChanged,this,[&](int value){
+    auto settings = new Settings(this, ui->videoWidget->brightness(),
+                                 ui->videoWidget->hue(), ui->videoWidget->saturation(),
+                                 ui->videoWidget->contrast());
+    connect(settings, &Settings::brightnessChanged, this, [&](int value) {
         ui->videoWidget->setBrightness(value);
     });
-    connect(settings,&Settings::hueChanged,this,[&](int value){
+    connect(settings, &Settings::hueChanged, this, [&](int value) {
         ui->videoWidget->setHue(value);
     });
-    connect(settings,&Settings::saturationChanged,this,[&](int value){
+    connect(settings, &Settings::saturationChanged, this, [&](int value) {
         ui->videoWidget->setSaturation(value);
     });
-    connect(settings,&Settings::contrastChanged,this,[&](int value){
+    connect(settings, &Settings::contrastChanged, this, [&](int value) {
         ui->videoWidget->setContrast(value);
     });
     settings->show();
@@ -437,6 +438,6 @@ void Window::onSettings()
 /// Show a dialog containing info about the current media
 void Window::onInfo()
 {
-    auto const infoWindow = new Info(this,player);
+    auto const infoWindow = new Info(this, player);
     infoWindow->show();
 }

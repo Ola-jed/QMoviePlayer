@@ -13,14 +13,14 @@ QT_END_NAMESPACE
 
 class Info : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
-    public:
-        explicit Info(QWidget *parent = nullptr,QMediaPlayer *player = nullptr);
-        ~Info() override;
+public:
+    explicit Info(QWidget *parent = nullptr, QMediaPlayer *player = nullptr);
+    ~Info() override;
 
-    private:
-        Ui::Info *ui;
+private:
+    Ui::Info *ui;
 };
 
 #endif //QMOVIEPLAYER_INFO_HPP
